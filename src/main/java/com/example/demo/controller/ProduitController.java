@@ -132,6 +132,6 @@ public class ProduitController {
 	
 	@GetMapping("/test")
 	public ResponseEntity<String> test(){
-		return ResponseEntity.ok("test");
+		return ResponseEntity.ok("hello test");
 	}
 }
