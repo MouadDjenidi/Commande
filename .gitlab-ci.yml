@@ -1,0 +1,15 @@
+stages: 
+    -build
+    -test
+build:
+    -stage:build
+    -script:
+        -echo "commande build"
+        -mkdir build
+        -touch build/info.text
+test:
+    -stage:test
+    -script:
+         -echo "testing"
+         -test -f "build/info.text"
+        
