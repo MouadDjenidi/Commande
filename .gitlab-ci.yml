@@ -28,9 +28,6 @@ deploy_dev:
  - apt-get install -y ruby-dev
  - gem install dpl
  - dpl --provider=heroku --app=commande1 --api-key=042936cb-540a-453a-9d86-bf576337504d
- environment:
- name: dev
- url: https://commande1.herokuapp.com/
  only:
  - master
  tags:
@@ -44,9 +41,6 @@ deploy_staging:
  - apt-get install -y ruby-dev
  - gem install dpl
  - dpl --provider=heroku --app=commande1 --api-key=042936cb-540a-453a-9d86-bf576337504d
- environment:
- name: staging
- url: https://commande1.herokuapp.com/
  only:
  - master
  tags:
