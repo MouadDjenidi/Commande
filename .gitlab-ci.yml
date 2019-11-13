@@ -1,43 +1,9 @@
-before_script:
- - echo "Execute scripts which are required to bootstrap the application. !"
-
-after_script:
- - echo "Clean up activity can be done here !."
- 
-cache:
- paths:
- - /root/.m2/repository
- 
 stages:
- - build
- - deploy
+  - build
+  - test
+  - deploy
 
-build:
- stage: build
-
- 
-deploy_dev:
- stage: deploy
- image: ruby:2.3
- script:
- - apt-get update -qy
- - apt-get install -y oracle-java11-installer
- - gem install dpl
- - dpl --provider=heroku --app=commande1 --api-key=042936cb-540a-453a-9d86-bf576337504d
- only:
- - master
- tags:
- - docker
- 
-deploy_staging:
- stage: deploy
- image: ruby:2.3
- script:
- - apt-get update -qy
- - apt-get install -y oracle-java11-installer
- - gem install dpl
- - dpl --provider=heroku --app=commande1 --api-key=042936cb-540a-453a-9d86-bf576337504d
- only:
- - master
- tags:
- - docker
+maven-build:
+  image: maven:3-jdk-8
+  stage: build
+  script: "mvn package -B"
