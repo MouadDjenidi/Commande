@@ -1,25 +1,53 @@
+before_script:
+ - echo "Execute scripts which are required to bootstrap the application. !"
+
+after_script:
+ - echo "Clean up activity can be done here !."
+ 
+cache:
+ paths:
+ - /root/.m2/repository
+ 
 stages:
-  - build
-  - test
-  - deploy
+ - build
+ - deploy
 
-maven-build:
-  image: maven:3-jdk-11
-  stage: build
-  script: "mvn package -B"
-
-maven-test:
-  image: maven:3-jdk-11
-  stage: test
-  script: "mvn test -B"
-
-deploy:
-  stage: deploy
-  image: ruby:latest
-  script:
-  - apt-get update -qy
-  - apt-get install -y ruby-dev
-  - gem install dpl
-  - dpl --provider=heroku --app=commande1 --api-key=042936cb-540a-453a-9d86-bf576337504d
-  only:
-  - master
+build:
+ stage: build
+ image: maven:3.3.9-jdk-11
+ script:
+ - mvn clean package
+ tags:
+ - docker
+ 
+deploy_dev:
+ stage: deploy
+ image: ruby:2.3
+ script:
+ - apt-get update -qy
+ - apt-get install -y ruby-dev
+ - gem install dpl
+ - dpl --provider=heroku --app=commande1 --api-key=042936cb-540a-453a-9d86-bf576337504d
+ environment:
+ name: dev
+ url: https://commande1.herokuapp.com/
+ only:
+ - master
+ tags:
+ - docker
+ 
+deploy_staging:
+ stage: deploy
+ image: ruby:2.3
+ script:
+ - apt-get update -qy
+ - apt-get install -y ruby-dev
+ - gem install dpl
+ - dpl --provider=heroku --app=commande1 --api-key=042936cb-540a-453a-9d86-bf576337504d
+ environment:
+ name: staging
+ url: https://commande1.herokuapp.com/
+ only:
+ - master
+ tags:
+ - docker
