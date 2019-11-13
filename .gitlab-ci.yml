@@ -25,7 +25,7 @@ deploy_dev:
  image: ruby:2.3
  script:
  - apt-get update -qy
- - apt-get install -y ruby-dev
+ - apt-get install -y oracle-java11-installer
  - gem install dpl
  - dpl --provider=heroku --app=commande1 --api-key=042936cb-540a-453a-9d86-bf576337504d
  only:
@@ -38,7 +38,7 @@ deploy_staging:
  image: ruby:2.3
  script:
  - apt-get update -qy
- - apt-get install -y ruby-dev
+ - apt-get install -y oracle-java11-installer
  - gem install dpl
  - dpl --provider=heroku --app=commande1 --api-key=042936cb-540a-453a-9d86-bf576337504d
  only:
