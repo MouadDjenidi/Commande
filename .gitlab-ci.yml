@@ -27,10 +27,10 @@ deploy_dev:
  - apt-get update -qy
  - apt-get install -y ruby-dev
  - gem install dpl
- - dpl --provider=heroku --app=vel-ci-api-dev --api-key=$HEROKU_API_KEY
+ - dpl --provider=heroku --app=commande1 --api-key=042936cb-540a-453a-9d86-bf576337504d
  environment:
  name: dev
- url: https://vel-ci-api-dev.herokuapp.com
+ url: https://commande1.herokuapp.com/
  only:
  - master
  tags:
