@@ -67,4 +67,9 @@ public class AnalyticController {
 	public ResponseEntity<String> test1(){
 		return ResponseEntity.ok("hello test1");
 	}
+	
+	@GetMapping("/test2")
+	public ResponseEntity<String> test2(){
+		return ResponseEntity.ok("hello test2");
+	}
 }
