@@ -1,7 +1,8 @@
 stages:
   - build
   - test
-
+  - deploy
+  
 maven-build:
   image: maven:3-jdk-11
   stage: build
