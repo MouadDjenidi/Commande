@@ -1,11 +1,25 @@
-- pipeline: "commande"
-  trigger_mode: "ON_EVERY_PUSH"
-  ref_name: "master"
-  ref_type: "BRANCH"
-  trigger_condition: "ALWAYS"
-  actions:
-  - action: "Deploy to commande1"
-    type: "HEROKU"
-    application_name: "commande1"
-    trigger_condition: "ALWAYS"
-    integration_id: 67855
+stages:
+  - build
+  - test
+  - deploy
+
+maven-build:
+  image: maven:3-jdk-11
+  stage: build
+  script: "mvn package -B"
+
+maven-test:
+  image: maven:3-jdk-11
+  stage: test
+  script: "mvn test -B"
+
+deploy:
+  stage: deploy
+  image: ruby:latest
+  script:
+  - apt-get update -qy
+  - apt-get install -y ruby-dev
+  - gem install dpl
+  - dpl --provider=heroku --app=commande1 --api-key=042936cb-540a-453a-9d86-bf576337504d
+  only:
+  - master
