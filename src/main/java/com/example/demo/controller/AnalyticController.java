@@ -57,19 +57,4 @@ public class AnalyticController {
 			return ResponseEntity.ok(res);
 		}
 	}
-	
-	@GetMapping("/test")
-	public ResponseEntity<String> test(){
-		return ResponseEntity.ok("hello test");
-	}
-	
-	@GetMapping("/test1")
-	public ResponseEntity<String> test1(){
-		return ResponseEntity.ok("hello test1");
-	}
-	
-	@GetMapping("/test2")
-	public ResponseEntity<String> test2(){
-		return ResponseEntity.ok("hello test2");
-	}
 }
