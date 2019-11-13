@@ -1,5 +1,11 @@
-commande_job_1:
-        tags:
-          -ci
-        scrypt:
-          -echo bon de commande
+- pipeline: "commande"
+  trigger_mode: "ON_EVERY_PUSH"
+  ref_name: "master"
+  ref_type: "BRANCH"
+  trigger_condition: "ALWAYS"
+  actions:
+  - action: "Deploy to commande1"
+    type: "HEROKU"
+    application_name: "commande1"
+    trigger_condition: "ALWAYS"
+    integration_id: 67855
