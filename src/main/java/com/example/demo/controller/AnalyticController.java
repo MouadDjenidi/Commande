@@ -3,7 +3,10 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,11 +21,16 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping("/Analytic")
+@RefreshScope
 @Api(value = "Analytic management" , description = "Analytic end points")
 public class AnalyticController {
 	
+	@Value("${ws.version}")
+	private String version;
+	
 	@Autowired AnalyticMetier analyticMetier;
 	
+	@PreAuthorize("hasRole('ROLE_VIEW_ANALITYC')")
 	@ApiOperation(value = "view list of best selling produit by qte")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message  = "Successfully  retrieving best selling produit by qte"),
@@ -40,7 +48,7 @@ public class AnalyticController {
 		}
 	}
 	
-	
+	@PreAuthorize("hasRole('ROLE_VIEW_ANALITYC')")
 	@ApiOperation(value = "view list of best selling produit by total vendu")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message  = "Successfully  retrieving best selling produit by total"),
@@ -56,5 +64,11 @@ public class AnalyticController {
 		}else {
 			return ResponseEntity.ok(res);
 		}
+	}
+	
+	@PreAuthorize("hasRole('ROLE_VIEW_ANALITYC')")
+	@GetMapping("/version")
+	public ResponseEntity<String> version(){
+		return ResponseEntity.ok(version);
 	}
 }
