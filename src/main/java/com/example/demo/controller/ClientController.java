@@ -5,6 +5,7 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,6 +27,7 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping("/Client")
+@RefreshScope
 @Api(value = "Client management" , description = "Client management end points")
 public class ClientController {
 	
