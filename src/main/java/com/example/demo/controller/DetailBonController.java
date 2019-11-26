@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,7 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping("/DetailBon")
+@RefreshScope
 @Api(value = "Detail bon management" , description = "detail bon end points")
 public class DetailBonController {
 	

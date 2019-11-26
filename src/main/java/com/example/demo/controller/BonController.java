@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,7 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping("/Bon")
+@RefreshScope
 @Api(value = "Bon management" , description = "bon end points")
 public class BonController {
    
